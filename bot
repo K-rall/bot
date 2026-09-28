@@ -1,0 +1,37 @@
+import discord
+import random
+import time
+memes = ["https://cdn.discordapp.com/attachments/1445871504616194079/1467057024885063855/RDT_20260130_1205496604839311278130901.gif?ex=6abc0f93&is=6ababe13&hm=484e4b1670ed3a6c8cd1123f04bfc297aab8d26511f15e8b806b70a12cf17aec",
+         "https://tenor.com/view/roblox-bacon-hair-bacon-hair-dance-gif-18121336341116932036",
+         "https://tenor.com/view/breaking-bad-heisenberg-dance-crazy-dance-party-gif-6874111392045692480",
+         "https://tenor.com/view/dog-bird-flying-gif-17884683403270491620",
+         "https://tenor.com/view/partying-cat-party-cat-cute-cat-kitten-gif-22225605",
+         "https://tenor.com/view/roblox-meme-gif-26540500"]
+from discord.ext import commands
+
+intents = discord.Intents.default()
+intents.message_content = True
+
+bot = commands.Bot(command_prefix='$', intents=intents)
+
+@bot.event
+async def on_ready():
+    print(f'Estamos logados como {bot.user}')
+
+@bot.command()
+async def hello(ctx):
+    await ctx.send(f'Olá! eu sou um bot {bot.user}!')
+
+@bot.command()
+async def heh(ctx, count_heh = 5):
+    await ctx.send("he" * count_heh)
+@bot.command()
+async def eu(ctx):
+    await ctx.send(f"Ser, ou nao ser {bot.user} , eis a questao")
+@bot.command()
+async def meme(ctx, m_c = 1):
+    for i in range (m_c):
+        time.sleep(1)
+        await ctx.send(random.choice(memes))
+
+bot.run("botcodehere")
